@@ -65,7 +65,10 @@ contract DEX {
     }
 
     function swapAForB(uint256 amountAIn) external returns (uint256 amountBOut) {
-        IERC20(tokenA).transferFrom(msg.sender, address(this), amountAIn);
+    require(amountAIn > 0, "Zero swap");
+
+    IERC20(tokenA).transferFrom(msg.sender, address(this), amountAIn);
+
 
         amountBOut = getAmountOut(amountAIn, reserveA, reserveB);
 
@@ -78,7 +81,10 @@ contract DEX {
     }
 
     function swapBForA(uint256 amountBIn) external returns (uint256 amountAOut) {
-        IERC20(tokenB).transferFrom(msg.sender, address(this), amountBIn);
+    require(amountBIn > 0, "Zero swap");
+
+    IERC20(tokenB).transferFrom(msg.sender, address(this), amountBIn);
+
 
         amountAOut = getAmountOut(amountBIn, reserveB, reserveA);
 
@@ -91,8 +97,12 @@ contract DEX {
     }
 
     function getPrice() external view returns (uint256 price) {
-        return (reserveB * 1e18) / reserveA;
+    if (reserveA == 0 || reserveB == 0) {
+        return 0;
     }
+    return (reserveB * 1e18) / reserveA;
+}
+
 
     function getReserves() external view returns (uint256, uint256) {
         return (reserveA, reserveB);
