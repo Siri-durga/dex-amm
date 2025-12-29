@@ -1,23 +1,17 @@
 {
   "name": "dex-amm",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "coverage": "hardhat coverage",
+    "deploy": "hardhat run scripts/deploy.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "@nomiclabs/hardhat-ethers": "^2.2.3",
-    "@types/node": "^22.19.3",
-    "ethers": "^5.7.2",
-    "hardhat": "^2.22.1",
-    "typescript": "~5.8.0"
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "hardhat": "^2.19.0"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^5.4.0",
-    "chai": "^6.2.2"
+    "@openzeppelin/contracts": "^4.9.0"
   }
 }
